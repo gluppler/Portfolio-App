@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+
+const ventures = await getCollection('ventures');
+---
+<section id="ventures" class="py-20 bg-gray-50 dark:bg-gray-800/50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">Ventures & Initiatives</h2>
+        <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+            {ventures.map((venture) => (
+                <div class="bg-white dark:bg-dark-blue p-6 rounded-lg shadow-md text-center flex flex-col border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">{venture.data.title}</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 flex-grow">{venture.data.description}</p>
+                    <a href={venture.data.websiteUrl} target="_blank" class="mt-auto inline-block bg-light-blue text-white font-bold py-2 px-4 rounded hover:bg-accent-purple transition-colors">Visit Website</a>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>

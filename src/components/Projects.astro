@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+<section id="projects" class="py-20">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center mb-12">Featured Projects</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project) => (
+                <div class="bg-gray-50 dark:bg-gray-800/50 rounded-lg overflow-hidden flex flex-col border border-gray-200 dark:border-gray-700">
+                    <img src={project.data.heroImage} alt={project.data.title} class="w-full h-48 object-cover aspect-video">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-2">{project.data.title}</h3>
+                        <p class="mb-4 flex-grow">{project.data.description}</p>
+                        <a href={project.data.githubUrl} target="_blank" class="text-brand-light-blue hover:underline mt-auto">View on GitHub</a>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>

@@ -1,0 +1,18 @@
+---
+// src/components/TwinklingStars.astro
+---
+<div class="absolute inset-0 -z-10">
+    <div class="absolute inset-0 h-full w-full">
+        {Array.from({ length: 50 }).map(() => (
+            <div
+                class="absolute h-[2px] w-[2px] animate-twinkle rounded-full bg-slate-500"
+                style={{
+                    top: `${Math.random() * 100}%`,
+                    left: `${Math.random() * 100}%`,
+                    animationDelay: `${Math.random() * 2}s`,
+                    animationDuration: `${Math.floor(Math.random() * (2 - 1 + 1)) + 1}s`,
+                }}
+            />
+        ))}
+    </div>
+</div>
